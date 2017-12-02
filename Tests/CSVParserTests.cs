@@ -43,6 +43,13 @@ namespace Tests
 
             Assert.Throws<InvalidDataException>(() => subject.Parse(new FileInfo(p + @"Not-A-CSV-Format-File.txt")));
 
+            var exception = Assert.Throws<FormatException>(() => subject.Parse(new FileInfo(p + @"test-invalid-cast-data.csv")));
+
+            Assert.AreEqual("Invalid row, unable to parse: Bob, 0.0f75, 640", exception.Message);
+
+            var nullException = Assert.Throws<FormatException>(() => subject.Parse(new FileInfo(p + @"test-null-fields-data.csv")));
+
+            Assert.AreEqual("Invalid row, unable to parse: , , ", nullException.Message);
         }
 
 

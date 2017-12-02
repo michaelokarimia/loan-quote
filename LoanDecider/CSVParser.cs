@@ -34,15 +34,21 @@ namespace LoanDecider
                     //check if not first line in csv
                     if(fields[0] != "Lender" && fields[1] != "Rate" && fields[2] != "Available")
                     {
+                        try
+                        {
+                            var name = fields[0];
+                            decimal rate = decimal.Parse(fields[1]);
 
-                        //need to validate these fields
-                        var name = fields[0];
-                        decimal rate = decimal.Parse(fields[1]);
-
-                        long amount = long.Parse(fields[2]);
+                            long amount = long.Parse(fields[2]);
 
 
-                        lenderList.Add(new Lender(name, rate, amount));
+                            lenderList.Add(new Lender(name, rate, amount));
+                        }
+                        catch (Exception e)
+                        {
+                            throw new FormatException(string.Format("Invalid row, unable to parse: {0}, {1}, {2}", fields[0], fields[1], fields[2]));
+                        }
+
 
                     }
                 }
