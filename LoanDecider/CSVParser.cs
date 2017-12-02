@@ -15,6 +15,10 @@ namespace LoanDecider
     {
         public IList<Lender> Parse(FileInfo filepath)
         {
+
+            if (filepath.Extension.ToLowerInvariant() != ".csv")
+                throw new InvalidDataException("File type was not in a .csv extention");
+
             var lenderList = new List<Lender>();
 
             using (var parser = new TextFieldParser(filepath.OpenText()))

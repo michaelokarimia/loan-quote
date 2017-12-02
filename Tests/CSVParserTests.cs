@@ -14,23 +14,34 @@ namespace Tests
     {
         CSVParser subject;
 
+        [SetUp]
+        public void SetUp()
+        {
+            subject = new CSVParser();
+        }
 
         [Test]
         public void LoadsValidCSVFile()
         {
-            subject = new CSVParser();
 
             string path = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Resources\test-market-data.csv";
 
             FileInfo validFilePath = new FileInfo(path);
 
-            
-            
-
             var result = subject.Parse(validFilePath);
 
+            Assert.That(result.Count, Is.EqualTo(7));
 
-            Assert.That(result.Count, Is.EqualTo(9));
+        }
+
+        [Test]
+        public void ThrowsExceptionWhenGivenInvalidInputData()
+        {
+            var p = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Resources\";
+           
+            Assert.Throws<FileNotFoundException>(() => subject.Parse(new FileInfo(p + @"FileThatDoesNotExists.csv")));
+
+            Assert.Throws<InvalidDataException>(() => subject.Parse(new FileInfo(p + @"Not-A-CSV-Format-File.txt")));
 
         }
 
