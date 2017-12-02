@@ -44,7 +44,7 @@ namespace LoanDecider
 
                             lenderList.Add(new Lender(name, rate, amount));
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             throw new FormatException(string.Format("Invalid row, unable to parse: {0}, {1}, {2}", fields[0], fields[1], fields[2]));
                         }
@@ -52,8 +52,6 @@ namespace LoanDecider
 
                     }
                 }
-
-
             }
 
                 return lenderList;

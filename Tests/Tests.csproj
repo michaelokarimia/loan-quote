@@ -71,6 +71,9 @@
     <Content Include="Resources\test-null-fields-data.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\test-null-rows-data.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoanDecider\LoanDecider.csproj">

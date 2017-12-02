@@ -1,11 +1,7 @@
 ﻿using LoanDecider;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -13,11 +9,13 @@ namespace Tests
     public class CSVParserTests
     {
         CSVParser subject;
+        string basePath;
 
         [SetUp]
         public void SetUp()
         {
             subject = new CSVParser();
+            basePath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Resources\";
         }
 
         [Test]
@@ -37,21 +35,30 @@ namespace Tests
         [Test]
         public void ThrowsExceptionWhenGivenInvalidInputData()
         {
-            var p = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Resources\";
+            
            
-            Assert.Throws<FileNotFoundException>(() => subject.Parse(new FileInfo(p + @"FileThatDoesNotExists.csv")));
+            Assert.Throws<FileNotFoundException>(() => subject.Parse(new FileInfo(basePath + @"FileThatDoesNotExists.csv")));
 
-            Assert.Throws<InvalidDataException>(() => subject.Parse(new FileInfo(p + @"Not-A-CSV-Format-File.txt")));
+            Assert.Throws<InvalidDataException>(() => subject.Parse(new FileInfo(basePath + @"Not-A-CSV-Format-File.txt")));
 
-            var exception = Assert.Throws<FormatException>(() => subject.Parse(new FileInfo(p + @"test-invalid-cast-data.csv")));
+            var exception = Assert.Throws<FormatException>(() => subject.Parse(new FileInfo(basePath + @"test-invalid-cast-data.csv")));
 
             Assert.AreEqual("Invalid row, unable to parse: Bob, 0.0f75, 640", exception.Message);
 
-            var nullException = Assert.Throws<FormatException>(() => subject.Parse(new FileInfo(p + @"test-null-fields-data.csv")));
+            var nullException = Assert.Throws<FormatException>(() => subject.Parse(new FileInfo(basePath + @"test-null-fields-data.csv")));
 
             Assert.AreEqual("Invalid row, unable to parse: , , ", nullException.Message);
+
         }
 
+        [Test]
+        public void CanParseCSVWithBlankLines()
+        {
+            var listOfLenders = subject.Parse(new FileInfo(basePath + @"test-null-rows-data.csv"));
+
+            Assert.AreEqual(2, listOfLenders.Count);
+
+        }
 
     }
 }
