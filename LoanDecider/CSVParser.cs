@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace LoanDecider
@@ -6,14 +7,16 @@ namespace LoanDecider
 
     public interface ICSVParser
     {
-        void Parse(FileInfo filepath);
+        IList<Lender> Parse(FileInfo filepath);
     }
 
     public class CSVParser : ICSVParser
     {
-        public void Parse(FileInfo filePath)
+        public IList<Lender> Parse(FileInfo filepath)
         {
-            throw new NotImplementedException();
+            var lenderList = new List<Lender>();
+
+            return lenderList;
         }
     }
 }
