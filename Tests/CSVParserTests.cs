@@ -20,11 +20,17 @@ namespace Tests
         {
             subject = new CSVParser();
 
-            FileInfo validFilePath = new FileInfo(@"\\..\\..\\test-market-data.csv");
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Resources\test-market-data.csv";
+
+            FileInfo validFilePath = new FileInfo(path);
+
+            
+            
+
             var result = subject.Parse(validFilePath);
 
 
-            Assert.That(result.Count, Is.GreaterThan(0));
+            Assert.That(result.Count, Is.EqualTo(9));
 
         }
 
