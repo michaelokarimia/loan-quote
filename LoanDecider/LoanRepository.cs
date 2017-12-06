@@ -7,7 +7,7 @@ namespace LoanDecider
     {
         private IList<Lender> lenders;
 
-        public LoanRepository(IMarketToLenderMapper marketDataMapper, IMarketDataRepository marketDateRepository)
+        public LoanRepository(MarketToLenderMapper marketDataMapper, IMarketDataRepository marketDateRepository)
         {
             lenders = marketDataMapper.Map(marketDateRepository);
         }
@@ -20,9 +20,11 @@ namespace LoanDecider
 
             foreach (Lender l in validLenders)
             {
-                loansForCustomer.Add(new Loan(l.Rate,
-                    RepaymentCalculator.GetMonthlyRate(l, requestedAmount),
-                    RepaymentCalculator.GetTotalRepayment(l, requestedAmount)));
+                double rate = (double)l.Rate;
+
+                loansForCustomer.Add(new Loan(rate,
+                    RepaymentCalculator.GetMonthlyRate(rate, requestedAmount),
+                    RepaymentCalculator.GetTotalRepayment(rate, requestedAmount)));
             }
 
 

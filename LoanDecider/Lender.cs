@@ -3,17 +3,17 @@
     public class Lender
     {
         private string name;
-        private decimal rate;
-        private long amount;
+        private double rate;
+        private double amount;
 
-        public Lender(string name, decimal rate, long amount)
+        public Lender(string name, double rate, double amount)
         {
             this.name = name;
             this.rate = rate;
             this.amount = amount;
         }
 
-        public long Amount { get => amount; }
-        public decimal Rate { get => rate; }
+        public double Amount { get => amount; }
+        public double Rate { get => rate; }
     }
 }

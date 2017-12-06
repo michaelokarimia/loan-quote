@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSVParser.cs" />
-    <Compile Include="IMarketToLenderMapper.cs" />
+    <Compile Include="MarketToLenderMapper.cs" />
     <Compile Include="Lender.cs" />
     <Compile Include="Loan.cs" />
     <Compile Include="LoanRepository.cs" />

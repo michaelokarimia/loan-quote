@@ -10,7 +10,7 @@ namespace Tests
     public class LoanRepositoryTests
     {
         private LoanRepository subject;
-        private Mock<IMarketToLenderMapper> mockMarketToLenderMapper = new Mock<IMarketToLenderMapper>();
+        private Mock<MarketToLenderMapper> mockMarketToLenderMapper = new Mock<MarketToLenderMapper>();
         private Mock<IMarketDataRepository> mockMarketData = new Mock<IMarketDataRepository>();
 
         [SetUp]
@@ -18,9 +18,9 @@ namespace Tests
         {
             var lenderList = new List<Lender>
             {
-                new Lender("Bob", 5.0M, 400),
-                new Lender("Jane", 6.5M, 750),
-                new Lender("Rita", 4.5M, 350),
+                new Lender("Bob", 5.0, 400),
+                new Lender("Jane", 6.5, 750),
+                new Lender("Rita", 4.5, 350),
 
             };
 
@@ -45,9 +45,9 @@ namespace Tests
 
             var loan = loans.First();
 
-            Assert.That(loan.Rate, Is.EqualTo(6.5M));
-            Assert.That(loan.MonthlyRepayment, Is.EqualTo(14.357697881845M));
-            Assert.That(loan.TotalRepayment, Is.EqualTo(516.87712374642m));
+            Assert.That(loan.Rate, Is.EqualTo(6.5));
+            Assert.That(loan.MonthlyRepayment, Is.EqualTo(14.357697881845));
+            Assert.That(loan.TotalRepayment, Is.EqualTo(516.87712374642));
         }
     }
 }

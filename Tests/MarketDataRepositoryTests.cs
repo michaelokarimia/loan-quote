@@ -22,8 +22,8 @@ namespace Tests
 
             lendersData = new List<Lender>
             {
-               new Lender( "Bob",0.075M,640),
-               new Lender("Jane",0.069M,480),
+               new Lender( "Bob",0.075,640),
+               new Lender("Jane",0.069,480),
 
             };
 

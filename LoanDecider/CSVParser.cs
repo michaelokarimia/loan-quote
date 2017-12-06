@@ -37,7 +37,7 @@ namespace LoanDecider
                         try
                         {
                             var name = fields[0];
-                            decimal rate = decimal.Parse(fields[1]);
+                            double rate = double.Parse(fields[1]);
 
                             long amount = long.Parse(fields[2]);
 

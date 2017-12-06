@@ -2,7 +2,7 @@
 
 namespace LoanDecider
 {
-    public interface IMarketToLenderMapper
+    public interface MarketToLenderMapper
     {
         IList<Lender> Map(IMarketDataRepository marketDateRepository);
     }
