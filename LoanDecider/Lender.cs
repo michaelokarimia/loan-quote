@@ -12,5 +12,8 @@
             this.rate = rate;
             this.amount = amount;
         }
+
+        public long Amount { get => amount; }
+        public decimal Rate { get => rate; }
     }
 }

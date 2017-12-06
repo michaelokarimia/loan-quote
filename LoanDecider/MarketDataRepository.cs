@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace LoanDecider
@@ -6,6 +7,7 @@ namespace LoanDecider
     public interface IMarketDataRepository
     {
         void Load(FileInfo filePath);
+
     }
 
 
@@ -20,17 +22,7 @@ namespace LoanDecider
 
         public void Load(FileInfo filePath)
         {
-            parser.Parse(filePath);
-        }
-
-        public Loan GetLoan(long requestedAmount)
-        {
-
-            var rate = 3.56M;
-            var monthlyRepayment = 450.34M;
-            var totalRepayment = 732.39M;
-
-            return new Loan(rate, monthlyRepayment, totalRepayment);
+             parser.Parse(filePath);
         }
     }
 

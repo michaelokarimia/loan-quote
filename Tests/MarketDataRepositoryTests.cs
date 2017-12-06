@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using LoanDecider;
 using System.IO;
@@ -53,22 +49,7 @@ namespace Tests
 
             subject.Load(filePath);
 
-            long requestedAmount = 500;
-
-            var loan = subject.GetLoan(requestedAmount);
-
-            Assert.That(loan.Rate, Is.EqualTo(3.05M));
-            Assert.That(loan.MonthlyRepayment, Is.EqualTo(400.26M));
-            Assert.That(loan.TotalRepayment, Is.EqualTo(780.32M));
-
-            
-
 
         }
-
-
-
-
-
     }
 }

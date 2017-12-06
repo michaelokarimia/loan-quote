@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSVParser.cs" />
+    <Compile Include="IMarketToLenderMapper.cs" />
     <Compile Include="Lender.cs" />
     <Compile Include="Loan.cs" />
+    <Compile Include="LoanRepository.cs" />
     <Compile Include="MarketDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepaymentCalculator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
