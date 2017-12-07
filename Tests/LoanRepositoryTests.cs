@@ -24,16 +24,9 @@ namespace Tests
                 
             };
                 
-                
-
             mockMarketToLenderMapper.Setup(x => x.Map(It.IsAny<ILenderRepository>())).Returns(availableLoans);
 
-
             subject = new LoanRepository(mockMarketToLenderMapper.Object, mockMarketData.Object);
-
-           
-
-
         }
 
         [Test]

@@ -49,5 +49,11 @@
     <None Include="App.config" />
     <None Include="market-data.csv" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoanDecider\LoanDecider.csproj">
+      <Project>{0f001d79-8683-4140-b810-47c4913c5c96}</Project>
+      <Name>LoanDecider</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
