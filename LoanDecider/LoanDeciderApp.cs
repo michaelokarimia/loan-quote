@@ -9,9 +9,7 @@ namespace LoanDecider
         public void Start(string marketData, string requestStr)
         {
 
-            var lenderRepo = new LenderRepository(new CSVParser());
-
-            lenderRepo.Load(new System.IO.FileInfo(marketData));
+            var lenderRepo = new LenderRepository(new CSVParser(), new System.IO.FileInfo(marketData));
 
             var repo = new LoanRepository(new LenderToLoanMapper(), lenderRepo);
 

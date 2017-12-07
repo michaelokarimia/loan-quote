@@ -6,33 +6,23 @@ namespace LoanDecider
 {
     public interface ILenderRepository
     {
-        void Load(FileInfo filePath);
         IList<Lender> Get();
     }
-
 
     public class LenderRepository : ILenderRepository
     {
         private ICSVParser parser;
         private IList<Lender> lenders;
 
-        public LenderRepository(ICSVParser parser)
+        public LenderRepository(ICSVParser parser, FileInfo filePath)
         {
             this.parser = parser;
-            lenders = new List<Lender>();
+            lenders = parser.Parse(filePath);
         }
 
         public IList<Lender> Get()
         {
             return lenders;
         }
-
-        public void Load(FileInfo filePath)
-        {
-            lenders =  parser.Parse(filePath);
-        }
     }
-
-
-
 }

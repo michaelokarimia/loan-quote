@@ -29,18 +29,14 @@ namespace Tests
 
             mockCSVParser.Setup(x => x.Parse(It.IsAny<FileInfo>())).Returns(lendersData);
 
-            subject = new LenderRepository(mockCSVParser.Object);
-        }
-
-
-        [Test]
-        public void LoadsInvokesCSVParserWhenLoadingMarketDataFromCsvFile()
-        {
             filePath = new FileInfo("test-market-data.csv");
 
-            subject.Load(filePath);
+
+            subject = new LenderRepository(mockCSVParser.Object, filePath);
 
             mockCSVParser.Verify(x => x.Parse(filePath), Times.Once);
+
         }
+        
     }
 }
