@@ -14,7 +14,7 @@ namespace LoanDecider
 
             var lenderRepo = new LenderRepository(new CSVParser());
 
-            lenderRepo.Load(new System.IO.FileInfo(@"C:\code\LoanDecider\ConsoleApplication\market-data.csv"));
+            lenderRepo.Load(new System.IO.FileInfo(marketData));
 
             var repo = new LoanRepository(new LenderToLoanMapper(), lenderRepo);
 
@@ -33,14 +33,20 @@ namespace LoanDecider
 
             if (availableLoans.Count > 0)
             {
-                Console.WriteLine("Best loans is {0}", availableLoans[0].Lender);
+
+                var bestLoan = availableLoans.First();
+
+                Console.WriteLine("Requested Amount {0}", requestedLoanAmount);
+                Console.WriteLine("Rate: {0:0.0}%", bestLoan.Rate * 100);
+                Console.WriteLine("Monthly repayment: £{0:0.00}", bestLoan.MonthlyRepayment);
+                Console.WriteLine("Total repayment: £{0:0.00}", bestLoan.TotalRepayment);
+
             }
             else
             {
                 Console.WriteLine("It is not possible to provide a quote at that time");
             }
 
-            Console.ReadKey();
         }
     }
 }
