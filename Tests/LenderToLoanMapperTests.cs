@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using Moq;
 using LoanDecider;
@@ -10,14 +6,14 @@ using LoanDecider;
 namespace Tests
 {
     [TestFixture]
-    public class MarketToLoansMapperTests
+    public class LenderToLoanMapperTests
     {
-        IMarketDataToLoansMapper subject;
+        ILenderToLoanMapper subject;
 
         [SetUp]
         public void Setup()
         {
-            subject = new MarketDataToLoansMapper();
+            subject = new LenderToLoanMapper();
         }
 
 
@@ -34,7 +30,7 @@ namespace Tests
 
 
 
-            Mock<IMarketDataRepository> mockmarketDateRepository = new Mock<IMarketDataRepository>();
+            Mock<ILenderRepository> mockmarketDateRepository = new Mock<ILenderRepository>();
 
             mockmarketDateRepository.Setup(x => x.Get()).Returns(lenderList);
 

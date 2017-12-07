@@ -7,9 +7,9 @@ using Moq;
 namespace Tests
 {
     [TestFixture]
-    public class MarketDataRepositoryTests
+    public class LenderRepositoryTests
     {
-        MarketDataRepository subject;
+        LenderRepository subject;
         Mock<ICSVParser> mockCSVParser;
         IList<Lender> lendersData;
         FileInfo filePath;
@@ -29,7 +29,7 @@ namespace Tests
 
             mockCSVParser.Setup(x => x.Parse(It.IsAny<FileInfo>())).Returns(lendersData);
 
-            subject = new MarketDataRepository(mockCSVParser.Object);
+            subject = new LenderRepository(mockCSVParser.Object);
         }
 
 
@@ -41,15 +41,6 @@ namespace Tests
             subject.Load(filePath);
 
             mockCSVParser.Verify(x => x.Parse(filePath), Times.Once);
-        }
-
-        [Test]
-        public void ReturnsAvailableLoanWhenLendersAreSufficient()
-        {
-
-            subject.Load(filePath);
-
-
         }
     }
 }

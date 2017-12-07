@@ -2,14 +2,9 @@
 
 namespace LoanDecider
 {
-    public interface IMarketDataToLoansMapper
+    public class LenderToLoanMapper : ILenderToLoanMapper
     {
-        IList<Loan> Map(IMarketDataRepository marketDateRepository);
-    }
-
-    public class MarketDataToLoansMapper : IMarketDataToLoansMapper
-    {
-        public IList<Loan> Map(IMarketDataRepository marketDateRepository)
+        public IList<Loan> Map(ILenderRepository marketDateRepository)
         {
             var loans = new List<Loan>();
 
@@ -22,5 +17,10 @@ namespace LoanDecider
 
             return loans;
         }
+    }
+
+    public interface ILenderToLoanMapper
+    {
+        IList<Loan> Map(ILenderRepository marketDateRepository);
     }
 }

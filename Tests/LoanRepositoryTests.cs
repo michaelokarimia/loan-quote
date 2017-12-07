@@ -10,20 +10,28 @@ namespace Tests
     public class LoanRepositoryTests
     {
         private LoanRepository subject;
-        private Mock<IMarketDataToLoansMapper> mockMarketToLenderMapper = new Mock<IMarketDataToLoansMapper>();
-        private Mock<IMarketDataRepository> mockMarketData = new Mock<IMarketDataRepository>();
+        private Mock<ILenderToLoanMapper> mockMarketToLenderMapper = new Mock<ILenderToLoanMapper>();
+        private Mock<ILenderRepository> mockMarketData = new Mock<ILenderRepository>();
 
         [SetUp]
         public void Setup()
         {
-            var loanList = new List<Loan>();
+            var availableLoans = new List<Loan>
+            {
+                new Loan("Bob", 500, 5.6, 0, 0),
+                new Loan("Jane", 250, 2.6, 0, 0),
+                new Loan("Sara", 490, 7.6, 0, 0),
+                
+            };
+                
+                
 
-            mockMarketToLenderMapper.Setup(x => x.Map(It.IsAny<IMarketDataRepository>())).Returns(loanList);
+            mockMarketToLenderMapper.Setup(x => x.Map(It.IsAny<ILenderRepository>())).Returns(availableLoans);
 
 
             subject = new LoanRepository(mockMarketToLenderMapper.Object, mockMarketData.Object);
 
-            mockMarketToLenderMapper.Verify(x => x.Map(It.IsAny<IMarketDataRepository>()), Times.Once);
+            mockMarketToLenderMapper.Verify(x => x.Map(It.IsAny<ILenderRepository>()), Times.Once);
 
 
         }
@@ -39,9 +47,9 @@ namespace Tests
 
             var loan = loans.First();
 
-            Assert.That(loan.Rate, Is.EqualTo(6.5));
-            Assert.That(loan.MonthlyRepayment, Is.EqualTo(14.357697881845));
-            Assert.That(loan.TotalRepayment, Is.EqualTo(516.87712374642));
+            Assert.That(loan.Rate, Is.EqualTo(5.6d));
+            Assert.That(loan.Principal, Is.EqualTo(500));
+            Assert.That(loan.Lender, Is.EqualTo("Bob"));
         }
     }
 }

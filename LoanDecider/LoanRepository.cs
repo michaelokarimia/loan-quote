@@ -7,7 +7,7 @@ namespace LoanDecider
     {
         private IList<Loan> loans;
 
-        public LoanRepository(IMarketDataToLoansMapper marketDataMapper, IMarketDataRepository marketDateRepository)
+        public LoanRepository(ILenderToLoanMapper marketDataMapper, ILenderRepository marketDateRepository)
         {
             loans = marketDataMapper.Map(marketDateRepository);
         }

@@ -54,9 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSVParserTests.cs" />
+    <Compile Include="LenderRepositoryTests.cs" />
+    <Compile Include="LenderToLoanMapperTests.cs" />
     <Compile Include="LoanRepositoryTests.cs" />
-    <Compile Include="MarketDataRepositoryTests.cs" />
-    <Compile Include="MarketToLoansMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

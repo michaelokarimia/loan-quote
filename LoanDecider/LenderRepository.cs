@@ -4,18 +4,18 @@ using System.IO;
 
 namespace LoanDecider
 {
-    public interface IMarketDataRepository
+    public interface ILenderRepository
     {
         void Load(FileInfo filePath);
         IList<Lender> Get();
     }
 
 
-    public class MarketDataRepository : IMarketDataRepository
+    public class LenderRepository : ILenderRepository
     {
         private ICSVParser parser;
 
-        public MarketDataRepository(ICSVParser parser)
+        public LenderRepository(ICSVParser parser)
         {
             this.parser = parser;
         }
