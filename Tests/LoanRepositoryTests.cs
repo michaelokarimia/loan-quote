@@ -20,6 +20,7 @@ namespace Tests
             {
                 new Loan("Bob", 500, 5.6, 0, 0),
                 new Loan("Jane", 250, 2.6, 0, 0),
+                new Loan("Fi", 250, 1.3, 0, 0),
                 new Loan("Sara", 490, 7.6, 0, 0),
                 
             };
@@ -63,6 +64,25 @@ namespace Tests
             var loans = subject.GetLoans(requestedAmount);
 
             Assert.That(loans.Count == 0);
+        }
+
+        [Test]
+        public void ReturnsTheCheaperLoanShouldTwoLendersBeAbleToSupplyTheSameAmount()
+        {
+
+            long requestedAmount = 250;
+
+            var loans = subject.GetLoans(requestedAmount);
+
+            Assert.That(loans.Count > 0);
+
+            var loan = loans.First();
+
+            Assert.That(loan.Rate, Is.EqualTo(1.3d));
+            Assert.That(loan.Principal, Is.EqualTo(250));
+            Assert.That(loan.Lender, Is.EqualTo("Fi"));
+
+
         }
     }
 }

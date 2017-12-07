@@ -26,10 +26,9 @@ namespace LoanDecider
                     l.Rate,
                     RepaymentCalculator.GetMonthlyRepayments(l.Rate, requestedAmount),
                     RepaymentCalculator.GetTotalRepayment(l.Rate, requestedAmount)));
-            }
+            };
 
-
-            return loansForCustomer;
+            return loansForCustomer.OrderBy(x => x.Rate).ToList();
         }
     }
         public interface ILoanRepository
