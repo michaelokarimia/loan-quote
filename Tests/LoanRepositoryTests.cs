@@ -10,21 +10,15 @@ namespace Tests
     public class LoanRepositoryTests
     {
         private LoanRepository subject;
-        private Mock<MarketToLenderMapper> mockMarketToLenderMapper = new Mock<MarketToLenderMapper>();
+        private Mock<IMarketDataToLoansMapper> mockMarketToLenderMapper = new Mock<IMarketDataToLoansMapper>();
         private Mock<IMarketDataRepository> mockMarketData = new Mock<IMarketDataRepository>();
 
         [SetUp]
         public void Setup()
         {
-            var lenderList = new List<Lender>
-            {
-                new Lender("Bob", 5.0, 400),
-                new Lender("Jane", 6.5, 750),
-                new Lender("Rita", 4.5, 350),
+            var loanList = new List<Loan>();
 
-            };
-
-            mockMarketToLenderMapper.Setup(x => x.Map(It.IsAny<IMarketDataRepository>())).Returns(lenderList);
+            mockMarketToLenderMapper.Setup(x => x.Map(It.IsAny<IMarketDataRepository>())).Returns(loanList);
 
 
             subject = new LoanRepository(mockMarketToLenderMapper.Object, mockMarketData.Object);

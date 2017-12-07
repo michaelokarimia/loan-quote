@@ -15,5 +15,6 @@
 
         public double Amount { get => amount; }
         public double Rate { get => rate; }
+        public string Name { get => name; }
     }
 }

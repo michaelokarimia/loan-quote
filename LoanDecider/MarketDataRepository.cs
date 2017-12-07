@@ -7,7 +7,7 @@ namespace LoanDecider
     public interface IMarketDataRepository
     {
         void Load(FileInfo filePath);
-
+        IList<Lender> Get();
     }
 
 
@@ -18,6 +18,11 @@ namespace LoanDecider
         public MarketDataRepository(ICSVParser parser)
         {
             this.parser = parser;
+        }
+
+        public IList<Lender> Get()
+        {
+            throw new NotImplementedException();
         }
 
         public void Load(FileInfo filePath)

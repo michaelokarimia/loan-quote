@@ -5,26 +5,27 @@ namespace LoanDecider
 {
     public class LoanRepository : ILoanRepository
     {
-        private IList<Lender> lenders;
+        private IList<Loan> loans;
 
-        public LoanRepository(MarketToLenderMapper marketDataMapper, IMarketDataRepository marketDateRepository)
+        public LoanRepository(IMarketDataToLoansMapper marketDataMapper, IMarketDataRepository marketDateRepository)
         {
-            lenders = marketDataMapper.Map(marketDateRepository);
+            loans = marketDataMapper.Map(marketDateRepository);
         }
 
         public IList<Loan> GetLoans(long requestedAmount)
         {
             IList<Loan> loansForCustomer = new List<Loan>();
 
-            var validLenders = lenders.Where(x => x.Amount >= requestedAmount);
+            var loans = this.loans.Where(x => x.Principal >= requestedAmount);
 
-            foreach (Lender l in validLenders)
+            foreach (Loan l in loans)
             {
-                double rate = (double)l.Rate;
 
-                loansForCustomer.Add(new Loan(rate,
-                    RepaymentCalculator.GetMonthlyRate(rate, requestedAmount),
-                    RepaymentCalculator.GetTotalRepayment(rate, requestedAmount)));
+                loansForCustomer.Add(new Loan(l.Lender,
+                    l.Principal,
+                    l.Rate,
+                    RepaymentCalculator.GetMonthlyRate(l.Rate, requestedAmount),
+                    RepaymentCalculator.GetTotalRepayment(l.Rate, requestedAmount)));
             }
 
 
