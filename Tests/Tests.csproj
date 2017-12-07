@@ -58,6 +58,7 @@
     <Compile Include="LenderToLoanMapperTests.cs" />
     <Compile Include="LoanRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepaymentCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\test-market-data.csv">

@@ -6,8 +6,12 @@ namespace LoanDecider
     {
         const double term = 36d;
 
-        internal static decimal GetMonthlyRate(double rate, long requestedAmount)
+        public static decimal GetMonthlyRepayments(double rate, long requestedAmount)
         {
+            if(rate == 0)
+            {
+                throw new ArgumentOutOfRangeException("Interest rate can not be set to 0%");
+            }
             double monthlyRate = 0;
 
             monthlyRate = ((rate / 100d / term) * requestedAmount) /
@@ -17,9 +21,9 @@ namespace LoanDecider
             return (decimal) monthlyRate ;
         }
 
-        internal static decimal GetTotalRepayment(double rate, long requestedAmount)
+        public static decimal GetTotalRepayment(double rate, long requestedAmount)
         {
-            return GetMonthlyRate(rate, requestedAmount) * (decimal)term;
+            return GetMonthlyRepayments(rate, requestedAmount) * (decimal)term;
         }
     }
 }

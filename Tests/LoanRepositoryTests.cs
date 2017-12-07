@@ -31,10 +31,20 @@ namespace Tests
 
             subject = new LoanRepository(mockMarketToLenderMapper.Object, mockMarketData.Object);
 
-            mockMarketToLenderMapper.Verify(x => x.Map(It.IsAny<ILenderRepository>()), Times.Once);
+           
 
 
         }
+
+        [Test]
+
+        public void MapperIsCalled()
+        {
+            mockMarketToLenderMapper.Verify(x => x.Map(It.IsAny<ILenderRepository>()), Times.Once);
+
+            subject.GetLoans(100);
+        }
+
 
         [Test]
         public void ReturnsALoanWhenLenderCanSupplyTheRequestedAmount()
@@ -50,6 +60,16 @@ namespace Tests
             Assert.That(loan.Rate, Is.EqualTo(5.6d));
             Assert.That(loan.Principal, Is.EqualTo(500));
             Assert.That(loan.Lender, Is.EqualTo("Bob"));
+        }
+
+        [Test]
+        public void ReturnsEmptyListOfLoansWhenNoLenderCanLendtheRequestedAmount()
+        {
+            long requestedAmount = 1000;
+
+            var loans = subject.GetLoans(requestedAmount);
+
+            Assert.That(loans.Count == 0);
         }
     }
 }

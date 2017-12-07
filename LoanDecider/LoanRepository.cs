@@ -24,7 +24,7 @@ namespace LoanDecider
                 loansForCustomer.Add(new Loan(l.Lender,
                     l.Principal,
                     l.Rate,
-                    RepaymentCalculator.GetMonthlyRate(l.Rate, requestedAmount),
+                    RepaymentCalculator.GetMonthlyRepayments(l.Rate, requestedAmount),
                     RepaymentCalculator.GetTotalRepayment(l.Rate, requestedAmount)));
             }
 
