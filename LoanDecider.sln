@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanDecider", "LoanDecider\LoanDecider.csproj", "{0F001D79-8683-4140-B810-47C4913C5C96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{227EC5D9-3A62-4EA1-9166-04F7D3B26978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quote", "ConsoleApplication\Quote.csproj", "{227EC5D9-3A62-4EA1-9166-04F7D3B26978}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{BC16F4DD-6E6D-49AE-8FB4-9E4DF41AE8FF}"
 EndProject

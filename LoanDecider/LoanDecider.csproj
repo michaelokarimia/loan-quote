@@ -46,7 +46,7 @@
     <Compile Include="LenderToLoanMapper.cs" />
     <Compile Include="Lender.cs" />
     <Compile Include="Loan.cs" />
-    <Compile Include="LoanDeciderApp.cs" />
+    <Compile Include="LoanDeciderConsoleUI.cs" />
     <Compile Include="LoanRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepaymentCalculator.cs" />
