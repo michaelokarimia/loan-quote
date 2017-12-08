@@ -31,7 +31,7 @@ namespace LoanDecider
 
                 var bestLoan = availableLoans.First();
 
-                Console.WriteLine("Requested Amount {0}", requestedLoanAmount);
+                Console.WriteLine("Requested Amount £{0}", requestedLoanAmount);
                 Console.WriteLine("Rate: {0:0.0}%", bestLoan.Rate * 100);
                 Console.WriteLine("Monthly repayment: £{0:0.00}", bestLoan.MonthlyRepayment);
                 Console.WriteLine("Total repayment: £{0:0.00}", bestLoan.TotalRepayment);

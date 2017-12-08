@@ -16,18 +16,22 @@ namespace LoanDecider
         {
             IList<Loan> loansForCustomer = new List<Loan>();
 
+            //assumes that there is a one to one relationship between lenders and loans.
+            //Does NOT pool together lenders sums into a single loan.
             var loans = this.loans.Where(x => x.Principal >= requestedAmount);
 
             foreach (Loan l in loans)
             {
 
-                loansForCustomer.Add(new Loan(l.Lender,
-                    l.Principal,
-                    l.Rate,
-                    RepaymentCalculator.GetMonthlyRepayments(l.Rate, requestedAmount),
-                    RepaymentCalculator.GetTotalRepayment(l.Rate, requestedAmount)));
+                loansForCustomer.Add(
+                    new Loan(l.Lender,
+                            l.Principal,
+                            l.Rate,
+                            RepaymentCalculator.GetMonthlyRepayment(l.Rate, requestedAmount),
+                            RepaymentCalculator.GetTotalRepayment(l.Rate, requestedAmount)));
             };
 
+            //cheapest loans at the start of the list
             return loansForCustomer.OrderBy(x => x.Rate).ToList();
         }
     }
